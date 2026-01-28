@@ -1,0 +1,144 @@
+.services {
+  background: var(--gradient-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+  opacity: 0.1;
+  top: -200px;
+  right: -200px;
+  border-radius: 50%;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+.service-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  filter: blur(50px);
+  z-index: 0;
+}
+
+.service-card:hover .card-glow {
+  opacity: 0.1;
+}
+
+.service-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transform: translateZ(20px);
+}
+
+.service-icon span {
+  font-size: 2.5rem;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--light-text);
+  transform: translateZ(10px);
+}
+
+.service-card p {
+  color: var(--gray-text);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  transform: translateZ(5px);
+}
+
+.service-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-blue);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+  padding: 0;
+  font-size: 1rem;
+}
+
+.service-btn:hover {
+  color: var(--primary-orange);
+}
+
+/* 3D Flip Effect for alternate cards */
+.service-card:nth-child(even) {
+  transform-origin: center;
+}
+
+.service-card:nth-child(even):hover {
+  transform: rotateY(-10deg);
+}
+
+.service-card:nth-child(odd):hover {
+  transform: rotateY(10deg);
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-card {
+    padding: 2rem;
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-icon span {
+    font-size: 2rem;
+  }
+}
