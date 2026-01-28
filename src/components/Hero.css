@@ -1,0 +1,313 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(ellipse at top, #0a2342 0%, var(--darker-bg) 100%);
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.layer-1 {
+  background: radial-gradient(circle at 20% 50%, var(--primary-blue) 0%, transparent 50%);
+}
+
+.layer-2 {
+  background: radial-gradient(circle at 80% 50%, var(--primary-orange) 0%, transparent 50%);
+}
+
+.layer-3 {
+  background: radial-gradient(circle at 50% 80%, var(--accent-green) 0%, transparent 40%);
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: var(--gray-text);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  perspective: 1000px;
+}
+
+.truck-3d {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.truck-body {
+  position: relative;
+  width: 350px;
+  height: 150px;
+  transform-style: preserve-3d;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(0, 102, 204, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.7));
+  }
+}
+
+.truck-cabin {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+  border-radius: 10px 10px 0 0;
+  left: 0;
+  bottom: 20px;
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.truck-cabin::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.2);
+  top: 10px;
+  left: 15%;
+  border-radius: 5px;
+}
+
+.truck-container {
+  position: absolute;
+  width: 250px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--primary-orange), #ff8c5a);
+  left: 100px;
+  bottom: 20px;
+  border-radius: 5px;
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.truck-container::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 80%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 20px,
+    rgba(0, 0, 0, 0.1) 20px,
+    rgba(0, 0, 0, 0.1) 22px
+  );
+  top: 10%;
+  left: 5%;
+  border-radius: 3px;
+}
+
+.truck-wheel {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #333 30%, #666 30%, #666 60%, #333 60%);
+  border-radius: 50%;
+  bottom: -10px;
+  animation: rotate 2s linear infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.truck-wheel-1 {
+  left: 20px;
+}
+
+.truck-wheel-2 {
+  left: 60px;
+}
+
+.truck-wheel-3 {
+  right: 40px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-text);
+  font-size: 0.9rem;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.scroll-arrow {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--primary-blue);
+  border-radius: 20px;
+  position: relative;
+}
+
+.scroll-arrow::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollDown 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    top: 10px;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .truck-3d {
+    height: 300px;
+  }
+
+  .truck-body {
+    width: 280px;
+    height: 120px;
+  }
+
+  .truck-cabin {
+    width: 80px;
+    height: 80px;
+  }
+
+  .truck-container {
+    width: 200px;
+    height: 100px;
+    left: 80px;
+  }
+
+  .truck-wheel {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+  }
+
+  .truck-3d {
+    height: 250px;
+  }
+
+  .truck-body {
+    width: 220px;
+    height: 100px;
+  }
+
+  .truck-cabin {
+    width: 60px;
+    height: 60px;
+  }
+
+  .truck-container {
+    width: 160px;
+    height: 80px;
+    left: 60px;
+  }
+
+  .truck-wheel {
+    width: 30px;
+    height: 30px;
+  }
+}
