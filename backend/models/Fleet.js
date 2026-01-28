@@ -25,7 +25,13 @@ const fleetSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Please provide year'],
     min: [1990, 'Year must be 1990 or later'],
-    max: [new Date().getFullYear() + 1, 'Year cannot be in the future']
+    validate: {
+      validator: function(value) {
+        // Dynamically check max year at validation time
+        return value <= new Date().getFullYear() + 1;
+      },
+      message: 'Year cannot be more than one year in the future'
+    }
   },
   licensePlate: {
     type: String,

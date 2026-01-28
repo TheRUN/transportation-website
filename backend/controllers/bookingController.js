@@ -1,5 +1,6 @@
 const Booking = require('../models/Booking');
 const { sendEmail, emailTemplates } = require('../config/email');
+const mongoose = require('mongoose');
 
 /**
  * @desc    Create new booking
@@ -99,6 +100,14 @@ exports.getBookings = async (req, res) => {
  */
 exports.getBooking = async (req, res) => {
   try {
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid booking ID format'
+      });
+    }
+
     const booking = await Booking.findById(req.params.id)
       .populate('userId', 'name email');
 

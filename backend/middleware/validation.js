@@ -179,8 +179,15 @@ exports.fleetValidation = [
   body('year')
     .notEmpty()
     .withMessage('Year is required')
-    .isInt({ min: 1990, max: new Date().getFullYear() + 1 })
-    .withMessage('Year must be between 1990 and next year'),
+    .isInt({ min: 1990 })
+    .withMessage('Year must be 1990 or later')
+    .custom((value) => {
+      const currentYear = new Date().getFullYear();
+      if (value > currentYear + 1) {
+        throw new Error('Year cannot be more than one year in the future');
+      }
+      return true;
+    }),
   body('licensePlate')
     .trim()
     .notEmpty()

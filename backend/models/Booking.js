@@ -15,7 +15,7 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide an email'],
     match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
       'Please provide a valid email'
     ]
   },
@@ -44,7 +44,7 @@ const bookingSchema = new mongoose.Schema({
     required: [true, 'Please specify scheduled date'],
     validate: {
       validator: function(value) {
-        // Ensure date is in the future
+        // Ensure date is in the future (evaluated at validation time)
         return value > new Date();
       },
       message: 'Scheduled date must be in the future'

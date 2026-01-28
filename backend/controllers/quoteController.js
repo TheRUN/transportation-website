@@ -1,5 +1,6 @@
 const Quote = require('../models/Quote');
 const { sendEmail, emailTemplates } = require('../config/email');
+const mongoose = require('mongoose');
 
 /**
  * @desc    Submit a quote request
@@ -90,6 +91,14 @@ exports.getQuotes = async (req, res) => {
  */
 exports.getQuote = async (req, res) => {
   try {
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid quote ID format'
+      });
+    }
+
     const quote = await Quote.findById(req.params.id);
 
     if (!quote) {

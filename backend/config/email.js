@@ -79,7 +79,7 @@ const emailTemplates = {
           <p>Best regards,<br>Transportation Company Team</p>
         </div>
         <div class="footer">
-          <p>&copy; 2024 Transportation Company. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} Transportation Company. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -164,7 +164,7 @@ const emailTemplates = {
           <p>Best regards,<br>Transportation Company Team</p>
         </div>
         <div class="footer">
-          <p>&copy; 2024 Transportation Company. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} Transportation Company. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -202,7 +202,7 @@ const emailTemplates = {
           <p>Best regards,<br>Transportation Company Team</p>
         </div>
         <div class="footer">
-          <p>&copy; 2024 Transportation Company. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} Transportation Company. All rights reserved.</p>
         </div>
       </div>
     </body>
@@ -236,7 +236,7 @@ const emailTemplates = {
           <p>Best regards,<br>Transportation Company Team</p>
         </div>
         <div class="footer">
-          <p>&copy; 2024 Transportation Company. All rights reserved.</p>
+          <p>&copy; ${new Date().getFullYear()} Transportation Company. All rights reserved.</p>
         </div>
       </div>
     </body>

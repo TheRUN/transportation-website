@@ -1,4 +1,5 @@
 const Fleet = require('../models/Fleet');
+const mongoose = require('mongoose');
 
 /**
  * @desc    Add new vehicle to fleet
@@ -102,6 +103,14 @@ exports.getVehicles = async (req, res) => {
  */
 exports.getVehicle = async (req, res) => {
   try {
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid vehicle ID format'
+      });
+    }
+
     const vehicle = await Fleet.findById(req.params.id);
 
     if (!vehicle) {
